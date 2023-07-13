@@ -25,4 +25,10 @@ module.exports = createCoreController("api::link.link", ({ strapi }) => ({
 
     return response;
   },
+  async delete(ctx) {
+    // @ts-ignore
+    const response = await super.delete(ctx);
+
+    return response;
+  },
 }));
