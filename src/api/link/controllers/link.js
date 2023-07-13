@@ -19,4 +19,10 @@ module.exports = createCoreController("api::link.link", ({ strapi }) => ({
 
     return response;
   },
+  async update(ctx) {
+    // @ts-ignore
+    const response = await super.update(ctx);
+
+    return response;
+  },
 }));

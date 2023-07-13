@@ -33,11 +33,6 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "links"
-    },
-    "views": {
-      "type": "component",
-      "repeatable": false,
-      "component": "views.views"
     }
   }
 }
