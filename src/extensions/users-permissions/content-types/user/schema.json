@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -70,6 +69,29 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::post.post",
+      "mappedBy": "user"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "required": true
+    },
+    "userImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "bio": {
+      "type": "text",
+      "minLength": 3,
+      "maxLength": 255
+    },
+    "links": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::link.link",
       "mappedBy": "user"
     }
   }
