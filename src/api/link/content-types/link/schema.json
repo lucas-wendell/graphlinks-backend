@@ -33,6 +33,11 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "links"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
     }
   }
 }
