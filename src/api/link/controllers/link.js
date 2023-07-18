@@ -20,14 +20,41 @@ module.exports = createCoreController("api::link.link", ({ strapi }) => ({
     return response;
   },
   async update(ctx) {
+    const user = ctx.state.user;
+    const { id: linkId } = ctx.params;
+    const links = await strapi.entityService.findMany("api::link.link", {
+      filters: {
+        user: {
+          id: user.id,
+        },
+      },
+    });
+    const isValidId = links.some((link) => link.id === Number(linkId));
+
+    if (!isValidId) {
+      ctx.badRequest("You cannot update this link");
+    }
+
     // @ts-ignore
     const response = await super.update(ctx);
-    console.log(response);
-    console.log(ctx);
-
     return response;
   },
   async delete(ctx) {
+    const user = ctx.state.user;
+    const { id: linkId } = ctx.params;
+    const links = await strapi.entityService.findMany("api::link.link", {
+      filters: {
+        user: {
+          id: user.id,
+        },
+      },
+    });
+    const isValidId = links.some((link) => link.id === Number(linkId));
+
+    if (!isValidId) {
+      ctx.badRequest("You cannot delete this link");
+    }
+
     // @ts-ignore
     const response = await super.delete(ctx);
 
