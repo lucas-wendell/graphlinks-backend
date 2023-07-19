@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "links",
+  "info": {
+    "singularName": "link",
+    "pluralName": "links",
+    "displayName": "link",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "text",
+      "default": "#"
+    },
+    "svgIcon": {
+      "type": "text"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "links"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    }
+  }
+}

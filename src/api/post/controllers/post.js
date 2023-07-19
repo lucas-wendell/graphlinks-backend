@@ -5,7 +5,6 @@
  */
 
 const { createCoreController } = require("@strapi/strapi").factories;
-const { sanitize } = require("@strapi/utils");
 
 module.exports = createCoreController("api::post.post", ({ strapi }) => ({
   async create(ctx) {
