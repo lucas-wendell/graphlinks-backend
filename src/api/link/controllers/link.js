@@ -32,7 +32,7 @@ module.exports = createCoreController("api::link.link", ({ strapi }) => ({
     const isValidId = links.some((link) => link.id === Number(linkId));
 
     if (!isValidId) {
-      ctx.badRequest("You cannot update this link");
+      return ctx.badRequest("You cannot update this link");
     }
 
     // @ts-ignore
@@ -52,7 +52,7 @@ module.exports = createCoreController("api::link.link", ({ strapi }) => ({
     const isValidId = links.some((link) => link.id === Number(linkId));
 
     if (!isValidId) {
-      ctx.badRequest("You cannot delete this link");
+      return ctx.badRequest("You cannot delete this link");
     }
 
     // @ts-ignore
