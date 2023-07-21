@@ -69,6 +69,7 @@ module.exports = createCoreController("api::link.link", ({ strapi }) => ({
         },
       },
     });
+
     return data;
   },
   async findOne(ctx) {
