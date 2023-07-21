@@ -1,5 +1,4 @@
 "use strict";
-
 const resolvers = require("./graphql/resolvers");
 const typeDefs = require("./graphql/typeDefs");
 
@@ -16,7 +15,10 @@ module.exports = {
         "Query.getTitles": {
           auth: true,
         },
-        "Query.getUserLinks": {
+        "Query.findUserLinks": {
+          auth: true,
+        },
+        "Query.findOneUserLink": {
           auth: true,
         },
       },

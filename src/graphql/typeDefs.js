@@ -1,9 +1,9 @@
 module.exports = `
   type Query {
     getTitles(msg: String!): [LinkTitle]
-    getUserLinks: [FilteredLink]
+    findUserLinks: [LinkEntity]
+    findOneUserLink(id: ID!): LinkEntity
   }
-
   type LinkTitle {
     id: ID
     title: String
