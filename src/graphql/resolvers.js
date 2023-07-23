@@ -37,7 +37,7 @@ module.exports = {
       resolve: async (_, args, context) => {
         const { id } = args;
         const { query } = context;
-        console.log("ola do findone");
+
         const user = context.state.user;
         const links = await strapi.entityService.findMany("api::link.link", {
           filters: {
@@ -68,6 +68,24 @@ module.exports = {
         });
 
         return entry;
+      },
+    },
+    customDeleteLink: {
+      resolve: async (_, args, context) => {
+        const user = context.state.user;
+        const links = await strapi.entityService.findMany("api::link.link", {
+          filters: {
+            user: {
+              id: user.id,
+            },
+          },
+        });
+        const isValidId = links.some((link) => link.id === Number(args.id));
+
+        if (isValidId) {
+          const entity = await strapi.service("api::link.link").delete(args.id);
+          return entity;
+        }
       },
     },
   },
