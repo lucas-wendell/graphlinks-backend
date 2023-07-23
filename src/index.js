@@ -10,6 +10,7 @@ module.exports = {
       typeDefs: typeDefs,
       resolvers: {
         Query: { ...resolvers.Query },
+        Mutation: { ...resolvers.Mutation },
       },
       resolversConfig: {
         "Query.getTitles": {
@@ -19,6 +20,9 @@ module.exports = {
           auth: true,
         },
         "Query.findOneUserLink": {
+          auth: true,
+        },
+        "Mutation.customCreateLink": {
           auth: true,
         },
       },

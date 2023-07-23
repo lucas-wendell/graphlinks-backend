@@ -4,6 +4,11 @@ module.exports = `
     findUserLinks: [LinkEntity]
     findOneUserLink(id: ID!): LinkEntity
   }
+
+  type Mutation {
+    customCreateLink(input: LinkInput): Link
+  }
+
   type LinkTitle {
     id: ID
     title: String

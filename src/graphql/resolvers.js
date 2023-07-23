@@ -37,7 +37,7 @@ module.exports = {
       resolve: async (_, args, context) => {
         const { id } = args;
         const { query } = context;
-
+        console.log("ola do findone");
         const user = context.state.user;
         const links = await strapi.entityService.findMany("api::link.link", {
           filters: {
@@ -56,5 +56,19 @@ module.exports = {
       },
     },
   },
-  Mutation: {},
+  Mutation: {
+    customCreateLink: {
+      resolve: async (_, args, context) => {
+        const { id } = context.state.user;
+        const data = { ...args.input, user: id };
+        const entry = await strapi.entityService.create("api::link.link", {
+          data: {
+            ...data,
+          },
+        });
+
+        return entry;
+      },
+    },
+  },
 };
