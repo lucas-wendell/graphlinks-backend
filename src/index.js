@@ -28,6 +28,9 @@ module.exports = {
         "Mutation.customDeleteLink": {
           auth: true,
         },
+        "Mutation.customUpdateLink": {
+          auth: true,
+        },
       },
     }));
   },

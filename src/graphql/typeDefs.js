@@ -8,6 +8,7 @@ module.exports = `
   type Mutation {
     customCreateLink(input: LinkInput): Link
     customDeleteLink(id: ID): Link
+    customUpdateLink(id: ID!, input: LinkInput): Link
   }
 
   type LinkTitle {

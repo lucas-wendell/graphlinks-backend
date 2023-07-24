@@ -88,5 +88,27 @@ module.exports = {
         }
       },
     },
+    customUpdateLink: {
+      resolve: async (_, args, ctx) => {
+        const user = ctx.state.user;
+        const data = { ...args.input };
+
+        const links = await strapi.entityService.findMany("api::link.link", {
+          filters: {
+            user: {
+              id: user.id,
+            },
+          },
+        });
+        const isValidId = links.some((link) => link.id === Number(args.id));
+
+        if (isValidId) {
+          const response = await strapi
+            .service("api::link.link")
+            .update(args.id, { data: { ...data } });
+          return response;
+        }
+      },
+    },
   },
 };
