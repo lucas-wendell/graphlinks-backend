@@ -1,20 +1,38 @@
-'use strict';
+"use strict";
+const resolvers = require("./graphql/resolvers");
+const typeDefs = require("./graphql/typeDefs");
 
 module.exports = {
-  /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
-   */
-  register(/*{ strapi }*/) {},
+  register({ strapi }) {
+    const extensionService = strapi.service("plugin::graphql.extension");
 
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
+    extensionService.use(({ strapi }) => ({
+      typeDefs: typeDefs,
+      resolvers: {
+        Query: { ...resolvers.Query },
+        Mutation: { ...resolvers.Mutation },
+      },
+      resolversConfig: {
+        "Query.getTitles": {
+          auth: true,
+        },
+        "Query.findUserLinks": {
+          auth: true,
+        },
+        "Query.findOneUserLink": {
+          auth: true,
+        },
+        "Mutation.customCreateLink": {
+          auth: true,
+        },
+        "Mutation.customDeleteLink": {
+          auth: true,
+        },
+        "Mutation.customUpdateLink": {
+          auth: true,
+        },
+      },
+    }));
+  },
   bootstrap(/*{ strapi }*/) {},
 };

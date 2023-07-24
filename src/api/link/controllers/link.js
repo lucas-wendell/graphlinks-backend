@@ -69,11 +69,27 @@ module.exports = createCoreController("api::link.link", ({ strapi }) => ({
         },
       },
     });
+
     return data;
   },
   async findOne(ctx) {
     const { id } = ctx.params;
     const { query } = ctx;
+
+    const user = ctx.state.user;
+    const links = await strapi.entityService.findMany("api::link.link", {
+      filters: {
+        user: {
+          id: user.id,
+        },
+      },
+    });
+
+    const isValidId = links.some((link) => link.id === Number(id));
+
+    if (!isValidId) {
+      return ctx.badRequest("You cannot find this link");
+    }
 
     const entity = await strapi.service("api::link.link").findOne(id, query);
     const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
