@@ -27,20 +27,16 @@ module.exports = ({ env }) => ({
     },
   },
   email: {
-    provider: 'smtp',
-    providerOptions: {
-      host: 'smtp.gmail.com', //SMTP Host
-      port: 465   , //SMTP Port
-      secure: true,
-      username: 'graphlinks.tech@gmail.com',
-      password: 'rdumbgpkyphqobcs',
-      rejectUnauthorized: true,
-      requireTLS: true,
-      connectionTimeout: 1,
-    },
-    settings: {
-      from: 'graphlinks.tech@gmail.com',
-      replyTo: 'graphlinks.tech@gmail.com',
+    config: {
+      provider: "strapi-provider-email-brevo",
+      providerOptions: {
+        apiKey: env("BREVO_API_KEY"),
+      },
+      settings: {
+        defaultSenderEmail: "graphlinks.tech@gmail.com",
+        defaultSenderName: "Graphlinks",
+        defaultReplyTo: "graphlinks.tech@gmail.com",
+      },
     },
   },
 });
